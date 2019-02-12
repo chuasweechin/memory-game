@@ -39,6 +39,13 @@ letter-spacing: .08em;
 font-weight: 500;
 }
 
+
+#game-score {
+font-family: "Droid Serif", serif;
+font-size: 18px;
+line-height: 26px;
+}
+
 .copyright {
 font-family: "Raleway", sans-serif;
 float: left;
@@ -60,8 +67,19 @@ font-size: 0;
 .name {
 color: #F15B31;
 font-weight: 700;
-
 }
+
+button {
+  cursor: pointer;
+  background-color: #00D0CB;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px 10px;
+  margin: 20px;
+  border-radius: 4px;
+ }
 
 body {
 margin: 0px;
