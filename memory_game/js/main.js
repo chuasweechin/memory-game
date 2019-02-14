@@ -24,6 +24,9 @@ var cards = [
 var score = 0;
 var cardsInPlay = [];
 
+var updateScore = function() {
+	document.getElementById("game-score").textContent = "Score: " + score;
+};
 
 var checkForMatch = function(){
 	if (cardsInPlay.length === 2){
@@ -42,7 +45,7 @@ var flipCard = function(){
 	cardsInPlay.push(cards[this.getAttribute("data-id")].rank);
 
 	if (cardsInPlay.length === 2){
-		setTimeout(checkForMatch, 300);
+		setTimeout(checkForMatch, 800);
 	}
 };
 
@@ -52,29 +55,38 @@ var createBoard = function() {
 
 	    cardElement.setAttribute("src", "images/back.png");
 	    cardElement.setAttribute("data-id", i);
+
 	    cardElement.addEventListener("click", flipCard);
+	    cardElement.addEventListener("click", function() {
+		  	this.style.transform = "rotateY(-360deg)";
+		  	this.style.transition = "transform 0.8s";
+		  	this.style.transformStyle = "preserve-3d";
+		});
 
 	    document.getElementById("game-board").appendChild(cardElement);
 	}
 };
 
 var resetBoard = function() {
+	//reset cards in play
 	cardsInPlay = [];
 
-	for (var i = 0; i < cards.length; i++) {
-	    var cardElements = document.getElementsByTagName("img");
-	    cardElements[i].setAttribute("src", "images/back.png");
-	}
-};
+	//remove all the old board of cards
+	var parent = document.getElementById("game-board");
+	var children = document.getElementsByTagName("img");
 
-var updateScore = function() {
-	document.getElementById("game-score").textContent = "Score: " + score;
+	for (var i = 0; i < cards.length; i++) {
+		parent.removeChild(children[0]);
+	}
+
+	//re-create board of cards to set up the game
+	createBoard();
 };
 
 //create board of cards to set up the game
 createBoard();
 
-//configure reset button to reset the game
+//include reset button to reset the game
 document.getElementById("game-reset").addEventListener("click", resetBoard);
 
 
