@@ -40,17 +40,17 @@ var checkForMatch = function() {
 	}
 };
 
-var flipCard = function(){
+var flipCard = function() {
 	//flip card only if the card has not been flipped yet
 	if (this.getAttribute("src") !== cards[this.getAttribute("data-id")].cardImage) {
 		this.setAttribute("src", cards[this.getAttribute("data-id")].cardImage);
 		cardsInPlay.push(cards[this.getAttribute("data-id")].rank);
+
+		if (cardsInPlay.length === 2) {
+			setTimeout(checkForMatch, 800);
+		}
 	} else {
 		alert("You have already flipped this card.");
-	}
-
-	if (cardsInPlay.length === 2){
-		setTimeout(checkForMatch, 800);
 	}
 };
 
