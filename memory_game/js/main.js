@@ -28,7 +28,7 @@ var updateScore = function() {
 	document.getElementById("game-score").textContent = "Score: " + score;
 };
 
-var checkForMatch = function(){
+var checkForMatch = function() {
 	if (cardsInPlay.length === 2){
 		if (cardsInPlay[0] === cardsInPlay[1]){
 			alert("You found a match!");
@@ -41,8 +41,13 @@ var checkForMatch = function(){
 };
 
 var flipCard = function(){
-	this.setAttribute("src", cards[this.getAttribute("data-id")].cardImage);
-	cardsInPlay.push(cards[this.getAttribute("data-id")].rank);
+	//flip card only if the card has not been flipped yet
+	if (this.getAttribute("src") !== cards[this.getAttribute("data-id")].cardImage) {
+		this.setAttribute("src", cards[this.getAttribute("data-id")].cardImage);
+		cardsInPlay.push(cards[this.getAttribute("data-id")].rank);
+	} else {
+		alert("You have already flipped this card.");
+	}
 
 	if (cardsInPlay.length === 2){
 		setTimeout(checkForMatch, 800);
@@ -78,8 +83,7 @@ var resetBoard = function() {
 	for (var i = 0; i < cards.length; i++) {
 		parent.removeChild(children[0]);
 	}
-
-	//re-create board of cards to set up the game
+	//re-create board of cards to re-setup the game
 	createBoard();
 };
 
