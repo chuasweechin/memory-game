@@ -1,1 +1,1 @@
-# wdi-fundamentals-memorygame
+# Software Enigneering Immersive(SEI) fundamentals memory game
