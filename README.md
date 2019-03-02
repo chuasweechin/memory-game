@@ -1,1 +1,1 @@
-# Software Enigneering Immersive(SEI) fundamentals memory game
+# SEI - Fundamentals Memory Game
